@@ -2,16 +2,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { setupSwagger } from './configs/setup-swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   const configService: ConfigService = app.get(ConfigService);
-
-  // if (configService.get(ENV.NODE_ENV) !== 'prod') {
-  //   setupSwagger(app);
-  // }
-
+  setupSwagger(app);
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
