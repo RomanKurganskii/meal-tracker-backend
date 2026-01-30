@@ -1,17 +1,18 @@
 import { ConfigModuleOptions } from '@nestjs/config';
 import * as Joi from 'joi';
+import { ENV } from '../common/consts/env.const';
 
 export const configModuleOptions: ConfigModuleOptions = {
   isGlobal: true,
   validationSchema: Joi.object({
-    NODE_ENV: Joi.string().required(),
-    PORT: Joi.number(),
-    POSTGRES_HOST: Joi.string().required(),
-    POSTGRES_PORT: Joi.number().required(),
-    POSTGRES_USER: Joi.string().required(),
-    POSTGRES_PASSWORD: Joi.string().required(),
-    POSTGRES_DB: Joi.string().required(),
-    JWT_SECRET: Joi.string().required(),
-    JWT_EXPIRATION_TIME: Joi.string().required(),
+    [ENV.NODE_ENV]: Joi.string().required(),
+    [ENV.PORT]: Joi.number(),
+    [ENV.POSTGRES_HOST]: Joi.string().required(),
+    [ENV.POSTGRES_PORT]: Joi.number().required(),
+    [ENV.POSTGRES_USER]: Joi.string().required(),
+    [ENV.POSTGRES_PASSWORD]: Joi.string().required(),
+    [ENV.POSTGRES_DB]: Joi.string().required(),
+    [ENV.JWT_SECRET]: Joi.string().required(),
+    [ENV.JWT_EXPIRATION_TIME]: Joi.string().required(),
   }),
 };

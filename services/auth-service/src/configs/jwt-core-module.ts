@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
+import { ENV } from '../common/consts/env.const';
 
 @Global()
 @Module({
@@ -9,9 +10,9 @@ import { JwtModule } from '@nestjs/jwt';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         global: true,
-        secret: configService.get('JWT_SECRET'),
+        secret: configService.get<string>(ENV.JWT_SECRET),
         signOptions: {
-          expiresIn: `${configService.get('JWT_EXPIRATION_TIME')}s`,
+          expiresIn: `${configService.get(ENV.JWT_EXPIRATION_TIME)}s`,
         },
       }),
     }),
