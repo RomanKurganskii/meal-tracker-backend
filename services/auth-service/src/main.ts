@@ -22,9 +22,7 @@ async function bootstrap() {
 
   app.enableCors({ origin: `*`, credentials: true });
   app.listen(configService.get(`PORT`) ?? 3000, () =>
-    console.log(
-      `Auth service started on ${configService.get(`PORT`)}`,
-    ),
+    console.log(`Auth service started on ${configService.get(`PORT`)}`),
   );
 }
 bootstrap();
